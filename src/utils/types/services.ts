@@ -1,7 +1,7 @@
 import { ObjectType,OrbitCode } from "./common";
 
 export interface Satellites{
-    noradCatId: string,
+noradCatId: string,
  intlDes:string,
  name: string,
  launchDate: string,

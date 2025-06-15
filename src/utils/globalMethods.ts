@@ -1,11 +1,10 @@
- export const  saveToLocal = (obj:Record<string, any>) =>{
-    console.log("obj",obj)
+ export const  saveToLocal = (key:string,obj:any) =>{
 const cleaned = cleanObject(obj);
- localStorage.setItem('filters', JSON.stringify(cleaned));
+ localStorage.setItem(key, JSON.stringify(cleaned));
 }
-export const loadFromLocal = (): Record<string, any> => {
+export const loadFromLocal = (key:string) => {
   try {
-    const raw = localStorage.getItem("filters");
+    const raw = localStorage.getItem(key);
     return raw ? JSON.parse(raw) : {};
   } catch {
     return {};

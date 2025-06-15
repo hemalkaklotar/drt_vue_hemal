@@ -78,12 +78,14 @@ const satellites = ref<Satellites[]>([]);
 const isModel = ref<boolean>(false);
 const columnList = ref<Column[]>([])
 let allSatellitesRaw: Satellites[] = [];
-const savedFilters = loadFromLocal();
+const savedFilters = loadFromLocal('filters');
 if (savedFilters) {
   tableState.value.filters = { ...tableState.value.filters , ...savedFilters };
 }
 
 const handleGlobalSearch = (val:string) =>{
+  saveToLocal('filters',tableState.value.search)
+
    const query = val.trim().toLowerCase();
     if (!query) {
     satellites.value = allSatellitesRaw;
@@ -124,7 +126,7 @@ const handleSort = (payload:SortPayload) =>{
 }
 const onFiltersApplied = () =>{
   loading.value.filterLoader = true
-  saveToLocal(tableState.value.filters)
+  saveToLocal('filters',tableState.value.filters)
   fetchSatellites(tableState.value.filters);
 }
 
